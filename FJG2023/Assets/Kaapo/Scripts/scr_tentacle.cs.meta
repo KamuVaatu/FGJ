@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 608dff4ea40ee7540aef93ac3f3a4b58
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - lineRenderer: {instanceID: 0}
+  - tentacleMaterial: {fileID: 2100000, guid: 0e7a04970e652f64c8b1b3bf95f6c85b, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
