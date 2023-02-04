@@ -5,18 +5,14 @@ using UnityEngine;
 public class scr_tentacle : MonoBehaviour
 {
     public LineRenderer lineRenderer;
-    private int segmentQuantity = 32;
-    private Vector3[] vertexPositions;
+    public int segmentQuantity = 32;
+    public Vector3[] vertexPositions;
     private Vector3[] vertexSpeed;
     private float distanceDivider;
     public Vector3 target;
     private Vector3 positionOffset;
     public Material tentacleMaterial;
     public Material shadowMaterial;
-    private int[] attachSegment;
-    private Vector3 attachPoint;
-    private GameObject[] potatoes;
-    private int potatoesGrown;
     private bool oneAtATime;
     public Sprite potatoSprite;
     private int fruitAtRandom;
@@ -61,15 +57,11 @@ public class scr_tentacle : MonoBehaviour
         
         distanceDivider = Vector3.Distance(transform.parent.position, target); //get distance to target from parent
         vertexPositions[0] = transform.parent.position; //set first segment at parent
-        Debug.Log(vertexPositions[0]);
         for (int i = 1; i < vertexPositions.Length; i++) //repeat for every segment
         {
             vertexPositions[i] = Vector3.SmoothDamp(vertexPositions[i], vertexPositions[i - 1] + target + transform.parent.position / distanceDivider + positionOffset, ref vertexSpeed[i], 2f); //position current vertex towards last one in direction of targer at set speed
-            attachPoint = vertexPositions[10];
         }
         lineRenderer.SetPositions(vertexPositions); //render line
-
-        
     }
     IEnumerator readyToFruit()
     {
@@ -83,9 +75,7 @@ public class scr_tentacle : MonoBehaviour
         potato.GetComponent<scr_bad_potato>().shadowMaterial = shadowMaterial;
         potato.GetComponent<scr_bad_potato>().rigidBody = potato.AddComponent<Rigidbody>();
         potato.GetComponent<scr_bad_potato>().potatoSprite = potatoSprite; //return sprite stored from the parent to child
-
-
-        oneAtATime = true;
+        potato.transform.parent = gameObject.transform;
     }
 }
 
