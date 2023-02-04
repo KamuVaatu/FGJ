@@ -41,7 +41,7 @@ public class scr_bad_potato : MonoBehaviour
 
         if (detatched == false)
         {
-            transform.position = attachPoint;
+            //transform.position = attachPoint;
         }
 
         if (doOnce == true) //lock after use
@@ -66,7 +66,7 @@ public class scr_bad_potato : MonoBehaviour
             tentacle.AddComponent<scr_tentacle>(); //add script to tentacle
             tentacle.GetComponent<scr_tentacle>().tentacleMaterial = tentacleMaterial; //add material to root
             tentacle.GetComponent<scr_tentacle>().shadowMaterial = shadowMaterial; //also store shadow material for later use
-            tentacle.GetComponent<scr_tentacle>().spriteRenderer = spriteRenderer; //also store this renderer to root
+
             tentacle.GetComponent<scr_tentacle>().potatoSprite = potatoSprite; //also store this sprite to root
 
             GameObject tentacle_shadow = new GameObject("Tentacle_Shadow"); //make new shadow
