@@ -5,9 +5,8 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - lineRenderer: {instanceID: 0}
-  - shadowRenderer: {instanceID: 0}
   - tentacleMaterial: {fileID: 2100000, guid: 0e7a04970e652f64c8b1b3bf95f6c85b, type: 2}
-  - shadowMaterial: {fileID: 2100000, guid: 1f91d45e907d466409db9018a308646f, type: 2}
+  - bad_potato_prefab: {fileID: 1753778622669143926, guid: 909f7227c5b5d3244be95b9f804cca31, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
