@@ -12,7 +12,6 @@ public class scr_tentacle : MonoBehaviour
     public Vector3 target;
     private Vector3 positionOffset;
     public Material tentacleMaterial;
-    private Vector3 attachPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +24,7 @@ public class scr_tentacle : MonoBehaviour
         {
             positionOffset = new Vector3(0, 0);
         }
-        target = new Vector3(transform.parent.GetComponent<scr_bad_potato>().randomX, transform.parent.GetComponent<scr_bad_potato>().randomY, 0);
+        target = new Vector3(transform.parent.GetComponent<scr_potato>().randomX, transform.parent.GetComponent<scr_potato>().randomY, 0);
         lineRenderer = gameObject.AddComponent<LineRenderer>();
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0f;
@@ -42,7 +41,7 @@ public class scr_tentacle : MonoBehaviour
         vertexPositions[0] = transform.parent.position; //set first segment at parent
         for (int i = 1; i < vertexPositions.Length; i++) //repeat for every segment
         {
-            vertexPositions[i] = Vector3.SmoothDamp(vertexPositions[i], vertexPositions[i - 1] + (target + transform.parent.position / distanceDivider) * 0.01f + positionOffset, ref vertexSpeed[i], 2f); //position current vertex towards last one in direction of targer at set speed
+            vertexPositions[i] = Vector3.SmoothDamp(vertexPositions[i], vertexPositions[i - 1] + (target + transform.parent.position / distanceDivider) * 0.1f + positionOffset, ref vertexSpeed[i], 0.05f); //position current vertex towards last one in direction of targer at set speed
         }
         lineRenderer.SetPositions(vertexPositions); //render line
     }
