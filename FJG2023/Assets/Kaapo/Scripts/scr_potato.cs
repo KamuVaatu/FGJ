@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class scr_potato : MonoBehaviour
 {
-
-
-    private float randomX;
-    private float randomY;
+    public float randomX;
+    public float randomY;
     private int generateThisMany;
     private int current;
     private bool doOnce;
+    public Material tentacleMaterial;
+    public Material shadowMaterial;
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,10 +35,21 @@ public class scr_potato : MonoBehaviour
     {
         if (current != generateThisMany)
         {
+            randomX = Random.Range(-4, 4);
+            randomY = Random.Range(-4, 4);
+
             yield return new WaitForSeconds(1); //wait this long to create new tentacle
             GameObject tentacle = new GameObject("Tentacle");
             tentacle.transform.parent = gameObject.transform;
+            tentacle.tag = "tag_tentacle";
             tentacle.AddComponent<scr_tentacle>();
+            tentacle.GetComponent<scr_tentacle>().tentacleMaterial = tentacleMaterial;
+
+            GameObject tentacle_shadow = new GameObject("Tentacle_Shadow");
+            tentacle_shadow.transform.parent = gameObject.transform;
+            tentacle_shadow.AddComponent<scr_tentacle>();
+            tentacle_shadow.GetComponent<scr_tentacle>().tentacleMaterial = shadowMaterial;
+
             current++;
             doOnce = false;
         }

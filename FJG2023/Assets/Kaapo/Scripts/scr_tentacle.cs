@@ -10,20 +10,25 @@ public class scr_tentacle : MonoBehaviour
     private Vector3[] vertexSpeed;
     private float distanceDivider;
     public Vector3 target;
-    private float randomX;
-    private float randomY;
+    private Vector3 positionOffset;
     public Material tentacleMaterial;
 
     // Start is called before the first frame update
     void Start()
     {
-        randomX = Random.Range(-4, 4);
-        randomY = Random.Range(-4, 4);
-        target = new Vector3(randomX, randomY, 0);
+        if (gameObject.tag == "tag_tentacle")
+        {
+            positionOffset = new Vector3(0.01f, 0.01f);
+        }
+        else
+        {
+            positionOffset = new Vector3(0, 0);
+        }
+        target = new Vector3(transform.parent.GetComponent<scr_potato>().randomX, transform.parent.GetComponent<scr_potato>().randomY, 0);
         lineRenderer = gameObject.AddComponent<LineRenderer>();
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0f;
-        GetComponent<Renderer>().material = tentacleMaterial;
+        lineRenderer.material = tentacleMaterial;
         lineRenderer.positionCount = segmentQuantity; //divisions in tentacle
         vertexPositions = new Vector3[segmentQuantity]; //add as many segment poses as there are divisions in tentacle
         vertexSpeed = new Vector3[segmentQuantity]; //add as many segment velocities as there are divisions in tentacle
@@ -36,7 +41,7 @@ public class scr_tentacle : MonoBehaviour
         vertexPositions[0] = transform.parent.position; //set first segment at parent
         for (int i = 1; i < vertexPositions.Length; i++) //repeat for every segment
         {
-            vertexPositions[i] = Vector3.SmoothDamp(vertexPositions[i], vertexPositions[i - 1] + (target + transform.parent.position / distanceDivider) * 0.1f, ref vertexSpeed[i], 0.05f); //position current vertex towards last one in direction of targer at set speed
+            vertexPositions[i] = Vector3.SmoothDamp(vertexPositions[i], vertexPositions[i - 1] + (target + transform.parent.position / distanceDivider) * 0.1f + positionOffset, ref vertexSpeed[i], 0.05f); //position current vertex towards last one in direction of targer at set speed
         }
         lineRenderer.SetPositions(vertexPositions); //render line
     }
