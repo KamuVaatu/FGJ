@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class scr_bad_potato : MonoBehaviour
 {
-    public float randomX;
-    public float randomY;
     private int generateThisMany;
     private int current;
     private bool doOnce;
@@ -16,18 +14,29 @@ public class scr_bad_potato : MonoBehaviour
     public Rigidbody rigidBody;
     private Vector3 ejectForce;
     public SpriteRenderer spriteRenderer;
-    public Sprite potatoSprite;
+    public Sprite[] potatoSprite;
     private int sproutAtRandom;
     private int attachSegment;
+    private Vector3 potatoOffset;
+    public float randomX;
+    public float randomY;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (transform.parent != null)
+        gameObject.AddComponent<scr_shadows>(); //add shadows
+        gameObject.GetComponent<scr_shadows>().shadowMaterial = shadowMaterial;
+        potatoOffset = new Vector3(Random.Range(0.05f, -0.05f), Random.Range(0.05f, -0.05f), 0);
+        if (transform.parent != null) //if the original potato
         {
+            gameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f); //start from nowhere
             attachSegment = Random.Range(0, transform.parent.GetComponent<scr_tentacle>().segmentQuantity);
         }
-        generateThisMany = Random.Range(8, 8); //amount of roots generated
+        else
+        {
+            gameObject.transform.localScale = new Vector3(1f, 1f, 1f); //start from nowhere
+        }
+        generateThisMany = Random.Range(10, 16); //amount of roots generated
         ejectForce = new Vector3(Random.Range(-1f, 1f),Random.Range(-1f, 1f),0); //force at which the potato will eject from root
         rigidBody.angularDrag = 0f; //remove drag
         rigidBody.useGravity = false; //remove gravity
@@ -46,7 +55,11 @@ public class scr_bad_potato : MonoBehaviour
         {
             if (transform.parent != null)
             {
-                transform.position = transform.parent.GetComponent<scr_tentacle>().vertexPositions[attachSegment];
+                if (gameObject.transform.localScale.x < 1)
+                {
+                    gameObject.transform.localScale = new Vector3(transform.localScale.x + 1.00001f * Time.deltaTime, transform.localScale.y + 1.00001f * Time.deltaTime, transform.localScale.z + 1.00001f * Time.deltaTime); //grow potato slowly
+                }
+                transform.position = transform.parent.GetComponent<scr_tentacle>().vertexPositions[attachSegment] + potatoOffset;
             }
         }
 
@@ -61,9 +74,9 @@ public class scr_bad_potato : MonoBehaviour
     {
         if (current != generateThisMany) //if the limit is not reached yet
         {
-            randomX = Random.Range(-0.1f, 0.1f); //direction, in which the tentacle will grow
-            randomY = Random.Range(-0.1f, 0.1f); //direction, in which the tentacle will grow
-            sproutAtRandom = Random.Range(10, 20);
+            sproutAtRandom = Random.Range(20, 40);
+            randomX = Random.Range(-0.5f, 0.5f); //direction, in which the tentacle will grow
+            randomY = Random.Range(-0.5f, 0.5f); //direction, in which the tentacle will grow
 
             yield return new WaitForSeconds(sproutAtRandom); //wait this long to create new tentacle
             GameObject tentacle = new GameObject("Tentacle"); //make new tentacle

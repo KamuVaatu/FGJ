@@ -13,6 +13,6 @@ public class RotatingObstacle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.right * Time.deltaTime * 30);
+        transform.Rotate(0, 0, 0.01f);
     }
 }
