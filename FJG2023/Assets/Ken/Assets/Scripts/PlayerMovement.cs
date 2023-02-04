@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     public float knockbackForce = 20; 
     public Vector2 forceToApply;
 
+    public Animator animator;
+
 
     Vector2 moveForce;
 
@@ -52,8 +54,8 @@ public class PlayerMovement : MonoBehaviour
         yForce = Input.GetAxisRaw("Vertical");
 
         moveForce = new Vector2(xForce, yForce).normalized;
-        
-        Flip();
+
+        animator.SetFloat("Speed", moveForce.sqrMagnitude);
     }
 
     private void AddMovement()
@@ -78,14 +80,17 @@ public class PlayerMovement : MonoBehaviour
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
-        } else if ((isFacingUp && yForce < 0f || !isFacingUp && yForce > 0f))
+        }
+        else if ((isFacingUp && yForce < 0f || !isFacingUp && yForce > 0f))
         {
             isFacingUp = !isFacingUp;
             Vector3 localScale = transform.localScale;
             localScale.y *= -1f;
             transform.localScale = localScale;
         }
+
     }
+
 
 
     //void KnockBack()
