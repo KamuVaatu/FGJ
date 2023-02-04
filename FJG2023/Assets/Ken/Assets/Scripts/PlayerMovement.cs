@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     public float knockbackForce = 20; 
     public Vector2 forceToApply;
 
+    public Animator animator;
+
 
     Vector2 moveForce;
 
@@ -51,9 +53,13 @@ public class PlayerMovement : MonoBehaviour
         xForce = Input.GetAxisRaw("Horizontal");
         yForce = Input.GetAxisRaw("Vertical");
 
+        animator.SetFloat("Horizontal", xForce);
+        animator.SetFloat("Vertical", yForce);
+
         moveForce = new Vector2(xForce, yForce).normalized;
-        
-        Flip();
+
+        animator.SetFloat("Speed", moveForce.sqrMagnitude);
+        Debug.Log(moveForce.sqrMagnitude);
     }
 
     private void AddMovement()
