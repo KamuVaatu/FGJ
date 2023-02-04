@@ -72,26 +72,6 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(cappedXVelocity, cappedYVelocity);
     }
 
-    private void Flip()
-    {
-        if (isFacingRight && xForce < 0f || !isFacingRight && xForce > 0f)
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
-        }
-        else if ((isFacingUp && yForce < 0f || !isFacingUp && yForce > 0f))
-        {
-            isFacingUp = !isFacingUp;
-            Vector3 localScale = transform.localScale;
-            localScale.y *= -1f;
-            transform.localScale = localScale;
-        }
-
-    }
-
-
 
     //void KnockBack()
     //{

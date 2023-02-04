@@ -5,12 +5,13 @@ using UnityEngine;
 
 
 public class PlayerCombat : MonoBehaviour
-{
+{ 
     public Animator animator;
 
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
+    public LayerMask neutralObjectLayers;
 
     public float attackRate = 2f;
     float nextAttackTime = 0F;
@@ -36,6 +37,11 @@ public class PlayerCombat : MonoBehaviour
         {
             Attack();
             nextAttackTime = Time.time + 1f / attackRate; // 0,5sec
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            interact();
         }
     }
 
@@ -71,10 +77,29 @@ public class PlayerCombat : MonoBehaviour
         //Damage them
         foreach(Collider2D enemy in hitEnemies)
         {
-            Debug.Log("Hit");
+            if (enemy.GetComponent<PotatoEnemy>() != null)  
+            {
+                enemy.GetComponent<PotatoEnemy>().TakeDamage(50);
+            }
         }
-
     }
+
+    
+    public void interact()
+    {
+        Collider2D[] someObjects= Physics2D.OverlapCircleAll(attackPoint.position, attackRange, neutralObjectLayers);
+        foreach (Collider2D someObject in someObjects)
+        {
+            if (someObject.gameObject.CompareTag("GoodPotato"))
+            {
+
+            }
+
+            someObject.GetComponent<Interactable>().Interact();
+
+        }
+    }
+
 
     // Draw the HitBox
     void OnDrawGizmosSelected()
