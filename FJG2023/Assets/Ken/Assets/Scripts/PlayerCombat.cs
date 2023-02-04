@@ -39,7 +39,7 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    //vaihtaa hitboxin syoton suuntaan
+    //vaihtaa hitboxin syoton suuntaanw
     void HitBoxPosition()
     {
         if(xPlayerDirection < 0 )
