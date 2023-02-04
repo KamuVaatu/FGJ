@@ -53,13 +53,9 @@ public class PlayerMovement : MonoBehaviour
         xForce = Input.GetAxisRaw("Horizontal");
         yForce = Input.GetAxisRaw("Vertical");
 
-        animator.SetFloat("Horizontal", xForce);
-        animator.SetFloat("Vertical", yForce);
-
         moveForce = new Vector2(xForce, yForce).normalized;
 
         animator.SetFloat("Speed", moveForce.sqrMagnitude);
-        Debug.Log(moveForce.sqrMagnitude);
     }
 
     private void AddMovement()
@@ -84,14 +80,17 @@ public class PlayerMovement : MonoBehaviour
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
-        } else if ((isFacingUp && yForce < 0f || !isFacingUp && yForce > 0f))
+        }
+        else if ((isFacingUp && yForce < 0f || !isFacingUp && yForce > 0f))
         {
             isFacingUp = !isFacingUp;
             Vector3 localScale = transform.localScale;
             localScale.y *= -1f;
             transform.localScale = localScale;
         }
+
     }
+
 
 
     //void KnockBack()
