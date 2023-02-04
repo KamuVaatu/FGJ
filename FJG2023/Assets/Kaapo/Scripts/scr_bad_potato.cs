@@ -16,14 +16,18 @@ public class scr_bad_potato : MonoBehaviour
     public Rigidbody rigidBody;
     private Vector3 ejectForce;
     public Vector3 attachPoint;
-
+    public SpriteRenderer spriteRenderer;
+    public Sprite potatoSprite;
+    private int sproutAtRandom;
 
     // Start is called before the first frame update
     void Start()
     {
-        generateThisMany = Random.Range(4, 16); //amount of roots generated
+        generateThisMany = Random.Range(8, 8); //amount of roots generated
         ejectForce = new Vector3(Random.Range(-1f, 1f),Random.Range(-1f, 1f),0); //force at which the potato will eject from root
-        
+        rigidBody.angularDrag = 0f; //remove drag
+        rigidBody.useGravity = false; //remove gravity
+        spriteRenderer.sprite = potatoSprite;
     }
 
     // Update is called once per frame
@@ -51,15 +55,19 @@ public class scr_bad_potato : MonoBehaviour
     {
         if (current != generateThisMany) //if the limit is not reached yet
         {
-            randomX = Random.Range(-4f, 4f); //direction, in which the tentacle will grow
-            randomY = Random.Range(-4f, 4f); //direction, in which the tentacle will grow
+            randomX = Random.Range(-1f, 1f); //direction, in which the tentacle will grow
+            randomY = Random.Range(-1f, 1f); //direction, in which the tentacle will grow
+            sproutAtRandom = Random.Range(10, 20);
 
-            yield return new WaitForSeconds(20); //wait this long to create new tentacle
+            yield return new WaitForSeconds(sproutAtRandom); //wait this long to create new tentacle
             GameObject tentacle = new GameObject("Tentacle"); //make new tentacle
             tentacle.transform.parent = gameObject.transform; //add this object as the parent
             tentacle.tag = "tag_tentacle"; //give tentacle tag to seperate it from shadow objects
             tentacle.AddComponent<scr_tentacle>(); //add script to tentacle
             tentacle.GetComponent<scr_tentacle>().tentacleMaterial = tentacleMaterial; //add material to root
+            tentacle.GetComponent<scr_tentacle>().shadowMaterial = shadowMaterial; //also store shadow material for later use
+            tentacle.GetComponent<scr_tentacle>().spriteRenderer = spriteRenderer; //also store this renderer to root
+            tentacle.GetComponent<scr_tentacle>().potatoSprite = potatoSprite; //also store this sprite to root
 
             GameObject tentacle_shadow = new GameObject("Tentacle_Shadow"); //make new shadow
             tentacle_shadow.transform.parent = gameObject.transform; //add this object as parent
