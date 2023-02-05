@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float forceDamping = 1.2F;
     public float knockbackForce = 20; 
     public Vector2 forceToApply;
-
+    
     public Animator animator;
 
 

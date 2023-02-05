@@ -12,6 +12,9 @@ public class PlayerCombat : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
     public LayerMask neutralObjectLayers;
+    public AudioClip attackClip;
+    public AudioClip interactClip;
+    public AudioSource playeraudio;
 
     public float attackRate = 2f;
     float nextAttackTime = 0F;
@@ -20,6 +23,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Start()
     {
+        playeraudio = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -69,7 +73,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Attack()
     {
-
+        playeraudio.PlayOneShot(attackClip, 1f);
         animator.SetFloat("AttackPosX", attackPoint.localPosition.x);
         animator.SetFloat("AttackPosY", attackPoint.localPosition.y);
 
@@ -93,7 +97,7 @@ public class PlayerCombat : MonoBehaviour
     public void interact()
     {
         //sound effect
-
+        playeraudio.PlayOneShot(interactClip, 1f);
         Collider2D[] someObjects= Physics2D.OverlapCircleAll(attackPoint.position, attackRange, neutralObjectLayers);
         foreach (Collider2D someObject in someObjects)
         {
