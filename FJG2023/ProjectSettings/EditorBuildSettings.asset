@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Mikko/StartingScreen.unity
+    guid: 81adbad2d7f9f5647ad1266ba157dec2
+  - enabled: 1
+    path: Assets/Mikko/New Scene.unity
+    guid: cbb2ff1d4a0ffc74da896360174b4265
   m_configObjects: {}

@@ -8,6 +8,7 @@ public class QuitGameScr : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+
     }
 
 }
