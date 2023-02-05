@@ -6,6 +6,8 @@ TagManager:
   tags:
   - tag_tentacle
   - Logic
+  - Potato
+  - Keeper
   layers:
   - Default
   - TransparentFX
