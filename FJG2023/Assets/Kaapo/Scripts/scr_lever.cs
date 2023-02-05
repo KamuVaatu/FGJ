@@ -18,7 +18,6 @@ public class scr_lever : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(leverPulled);
         GameObject[] tentacles = GameObject.FindGameObjectsWithTag("tag_tentacle"); //gather all levers in room to this array
         foreach (GameObject tentacle in tentacles) //check every lever for distance
         {

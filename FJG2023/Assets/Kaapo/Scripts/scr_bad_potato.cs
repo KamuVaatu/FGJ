@@ -20,6 +20,8 @@ public class scr_bad_potato : MonoBehaviour
     private Vector3 potatoOffset;
     public float randomX;
     public float randomY;
+    private bool boostOnce;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +47,11 @@ public class scr_bad_potato : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Vector3.Distance(transform.position, player.transform.position) > 4000)
+        {
+            Destroy(gameObject);
+        }
+
         if (detachLock == false)
         {
             StartCoroutine(detach());
@@ -68,6 +75,13 @@ public class scr_bad_potato : MonoBehaviour
             StartCoroutine(addTentacle()); //enter sprouting sequence
             doOnce = false; //lock
         }
+
+        if (boostOnce == false)
+        {
+            StartCoroutine(speedBoost());
+            boostOnce = true;
+        }
+
     }
 
     IEnumerator addTentacle()
@@ -85,6 +99,7 @@ public class scr_bad_potato : MonoBehaviour
             tentacle.AddComponent<scr_tentacle>(); //add script to tentacle
             tentacle.GetComponent<scr_tentacle>().tentacleMaterial = tentacleMaterial; //add material to root
             tentacle.GetComponent<scr_tentacle>().shadowMaterial = shadowMaterial; //also store shadow material for later use
+            tentacle.GetComponent<scr_tentacle>().player = player;
 
             tentacle.GetComponent<scr_tentacle>().potatoSprite = potatoSprite; //also store this sprite to root
 
@@ -99,10 +114,19 @@ public class scr_bad_potato : MonoBehaviour
     }
     IEnumerator detach()
     {
-        yield return new WaitForSeconds(20); //wait 20 seconds until ripe
+        yield return new WaitForSeconds(10); //wait 20 seconds until ripe
         detatched = true; //do not follow root anymore
         rigidBody.AddForce(ejectForce, ForceMode2D.Impulse); //add force to any direction
         transform.parent = null;
         doOnce = true; //activate sprouting
+    }
+
+    IEnumerator speedBoost()
+    {
+        ejectForce = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
+        yield return new WaitForSeconds(20); //wait 20 seconds until fruits sprout
+        Debug.Log("boost");
+        rigidBody.AddForce(ejectForce, ForceMode2D.Impulse);
+        boostOnce = false;
     }
 }
