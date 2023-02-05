@@ -71,27 +71,4 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = new Vector3(cappedXVelocity, cappedYVelocity);
     }
-
-
-    //void KnockBack()
-    //{
-    //    moveForce += forceToApply;
-    //    forceToApply /= forceDamping;
-    //    if (Mathf.Abs(forceToApply.x) <= 0.01f && Mathf.Abs(forceToApply.y) <= 0.01f)
-    //    {
-    //        forceToApply = Vector2.zero;
-    //    }
-    //    rb.velocity = moveForce;
-    //}
-
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.collider.CompareTag("Bullet"))
-    //    {
-    //        forceToApply += new Vector2(, 0);
-    //        Destroy(collision.gameObject);
-    //    }
-    //}
-
 }

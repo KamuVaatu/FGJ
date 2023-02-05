@@ -68,7 +68,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Attack()
     {
-
+        //sound effect
         //play attack animation
 
         // Detect enemies in range of attack
@@ -77,26 +77,31 @@ public class PlayerCombat : MonoBehaviour
         //Damage them
         foreach(Collider2D enemy in hitEnemies)
         {
-            if (enemy.GetComponent<PotatoEnemy>() != null)  
+            // Tagilla voi erottaa viholliset periaatteessa
+            if (enemy.GetComponent<PotatoEnemy>())  
             {
                 enemy.GetComponent<PotatoEnemy>().TakeDamage(50);
             }
         }
     }
 
-    
+    // Keraa perunat
     public void interact()
     {
+        //sound effect
+
         Collider2D[] someObjects= Physics2D.OverlapCircleAll(attackPoint.position, attackRange, neutralObjectLayers);
         foreach (Collider2D someObject in someObjects)
         {
-            if (someObject.gameObject.CompareTag("GoodPotato"))
+            if (someObject.CompareTag("Potato"))
             {
-
+                someObject.GetComponent<GoodPotato>().PickUp();
             }
 
-            someObject.GetComponent<Interactable>().Interact();
-
+            if (someObject.CompareTag("Keeper"))
+            {
+                someObject.GetComponent<InventoryBox>().ReceivePotatoes();
+            }
         }
     }
 
