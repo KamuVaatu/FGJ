@@ -100,7 +100,7 @@ public class scr_bad_potato : MonoBehaviour
             tentacle.AddComponent<scr_tentacle>(); //add script to tentacle
             tentacle.GetComponent<scr_tentacle>().tentacleMaterial = tentacleMaterial; //add material to root
             tentacle.GetComponent<scr_tentacle>().shadowMaterial = shadowMaterial; //also store shadow material for later use
-            tentacle.GetComponent<scr_tentacle>().player = player;
+            //tentacle.GetComponent<scr_tentacle>().player = player;
 
             tentacle.GetComponent<scr_tentacle>().potatoSprite = potatoSprite; //also store this sprite to root
 
