@@ -7,6 +7,11 @@ public class scr_door : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Sprite[] newSprite;
     private int doorOpenCount;
+    private Rigidbody2D potatoRigidBody;
+    private Rigidbody2D playerRigidBody;
+    private bool keepOpen;
+    private float smoothMultiplier;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,8 +46,22 @@ public class scr_door : MonoBehaviour
 
         if (doorOpenCount > 2) //3 or more levers on
         {
-            Destroy(gameObject);
+            if (keepOpen == false)
+            {
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                GameObject[] potatoes = GameObject.FindGameObjectsWithTag("Potato");
+                foreach (GameObject potato in potatoes)
+                {
+                    Debug.Log("ZUCC");
+                    Vector3 v3Force = 10f * transform.forward;
+                    potatoRigidBody = potato.GetComponent<Rigidbody2D>();
+                    potato.GetComponent<Rigidbody2D>().AddForce(v3Force);
+
+                    playerRigidBody = player.GetComponent<Rigidbody2D>();
+                    player.transform.position -= new Vector3(0, (1 * smoothMultiplier) * Time.deltaTime, 0);
+                    smoothMultiplier += 0.0025f;
+                }
+            }
         }
-        doorOpenCount = 0; //start again
     }
 }

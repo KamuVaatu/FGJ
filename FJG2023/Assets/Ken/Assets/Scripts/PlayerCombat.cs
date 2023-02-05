@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 public class PlayerCombat : MonoBehaviour
-{ 
+{
     public Animator animator;
 
     public Transform attackPoint;
@@ -16,10 +16,14 @@ public class PlayerCombat : MonoBehaviour
     public AudioClip interactClip;
     public AudioSource playeraudio;
 
+
     public float attackRate = 2f;
     float nextAttackTime = 0F;
     float xPlayerDirection;
     float yPlayerDirection;
+
+    Vector3 spawnPos;
+
 
     void Start()
     {
@@ -39,11 +43,6 @@ public class PlayerCombat : MonoBehaviour
             Attack();
             nextAttackTime = Time.time + 1f / attackRate; // 0,5sec
         }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            interact();
-        }
     }
 
     //vaihtaa hitboxin syoton suuntaanw
@@ -52,32 +51,33 @@ public class PlayerCombat : MonoBehaviour
         if(xPlayerDirection < 0 )
         {
             attackPoint.localPosition = new Vector3(-1, 0, 0);
-
         } 
         else if(xPlayerDirection > 0) 
         {
             attackPoint.localPosition = new Vector3(1, 0, 0);
-
         } 
         else if (yPlayerDirection < 0)
         {
             attackPoint.localPosition =  new Vector3(0, -1, 0);
-
         }
         else if (yPlayerDirection > 0)
         {
             attackPoint.localPosition = new Vector3(0, 1, 0);
-
         }
     }
 
     void Attack()
     {
+
         playeraudio.PlayOneShot(attackClip, 1f);
         animator.SetFloat("AttackPosX", attackPoint.localPosition.x);
         animator.SetFloat("AttackPosY", attackPoint.localPosition.y);
 
         animator.SetTrigger("Attack");
+
+
+        //play attack animation
+
 
         // Detect enemies in range of attack
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
@@ -85,13 +85,11 @@ public class PlayerCombat : MonoBehaviour
         //Damage them
         foreach(Collider2D enemy in hitEnemies)
         {
-            // Tagilla voi erottaa viholliset periaatteessa
-            if (enemy.GetComponent<PotatoEnemy>())  
-            {
-                enemy.GetComponent<PotatoEnemy>().TakeDamage(50);
-            }
+            Debug.Log("Hit");
         }
+
     }
+
 
     // Keraa perunat
     public void interact()
@@ -114,7 +112,6 @@ public class PlayerCombat : MonoBehaviour
             }
         }
     }
-
 
     // Draw the HitBox
     void OnDrawGizmosSelected()

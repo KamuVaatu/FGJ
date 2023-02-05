@@ -55,8 +55,6 @@ public class PlayerMovement : MonoBehaviour
 
         moveForce = new Vector2(xForce, yForce).normalized;
 
-        animator.SetFloat("Horizontal", xForce);
-        animator.SetFloat("Vertical", yForce);
         animator.SetFloat("Speed", moveForce.sqrMagnitude);
     }
 
@@ -73,4 +71,47 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = new Vector3(cappedXVelocity, cappedYVelocity);
     }
+
+    private void Flip()
+    {
+        if (isFacingRight && xForce < 0f || !isFacingRight && xForce > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
+        else if ((isFacingUp && yForce < 0f || !isFacingUp && yForce > 0f))
+        {
+            isFacingUp = !isFacingUp;
+            Vector3 localScale = transform.localScale;
+            localScale.y *= -1f;
+            transform.localScale = localScale;
+        }
+
+    }
+
+
+
+    //void KnockBack()
+    //{
+    //    moveForce += forceToApply;
+    //    forceToApply /= forceDamping;
+    //    if (Mathf.Abs(forceToApply.x) <= 0.01f && Mathf.Abs(forceToApply.y) <= 0.01f)
+    //    {
+    //        forceToApply = Vector2.zero;
+    //    }
+    //    rb.velocity = moveForce;
+    //}
+
+
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.collider.CompareTag("Bullet"))
+    //    {
+    //        forceToApply += new Vector2(, 0);
+    //        Destroy(collision.gameObject);
+    //    }
+    //}
+
 }
