@@ -75,8 +75,8 @@ public class scr_bad_potato : MonoBehaviour
         if (current != generateThisMany) //if the limit is not reached yet
         {
             sproutAtRandom = Random.Range(10, 20);
-            randomX = Random.Range(-0.5f, 0.5f); //direction, in which the tentacle will grow
-            randomY = Random.Range(-0.5f, 0.5f); //direction, in which the tentacle will grow
+            randomX = Random.Range(-0.2f, 0.2f); //direction, in which the tentacle will grow
+            randomY = Random.Range(-0.2f, 0.2f); //direction, in which the tentacle will grow
 
             yield return new WaitForSeconds(sproutAtRandom); //wait this long to create new tentacle
             GameObject tentacle = new GameObject("Tentacle"); //make new tentacle

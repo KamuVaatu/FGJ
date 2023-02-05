@@ -19,6 +19,9 @@ public class scr_tentacle : MonoBehaviour
     private int randomGood;
     public float randomX;
     public float randomY;
+    private float distanceToLever;
+    private float movementSpeed = 0.12f;
+    private bool attachOnce;
 
     // Start is called before the first frame update
     void Start()
@@ -63,13 +66,25 @@ public class scr_tentacle : MonoBehaviour
             oneAtATime = false;
         }
 
+        GameObject[] levers = GameObject.FindGameObjectsWithTag("tag_lever"); //gather all levers in room to this array
+        foreach (GameObject lever in levers) //check every lever for distance
+        {
+            distanceToLever = Vector3.Distance(lever.transform.position, vertexPositions[0]);
+            if (distanceToLever < 8f)
+            {
+                Debug.Log("aaa");
+                movementSpeed = 0.1f;
+                target = new Vector3(transform.position.x/lever.transform.position.x, transform.position.y / lever.transform.position.y, 0);
+                movementSpeed = 0.1f;
+            }
+        }
+
         vertexPositions[0] = transform.parent.position; //set first segment at parent
         for (int i = 1; i < vertexPositions.Length; i++) //repeat for every segment
         {
-            vertexPositions[i] = Vector3.SmoothDamp(vertexPositions[i], vertexPositions[i - 1] + target, ref vertexSpeed[i], 0.1f); //position current vertex towards last one in direction of targer at set speed
+            vertexPositions[i] = Vector3.SmoothDamp(vertexPositions[i], vertexPositions[i - 1] + target, ref vertexSpeed[i], movementSpeed); //position current vertex towards last one in direction of targer at set speed
         }
         lineRenderer.SetPositions(vertexPositions); //render line
-
     }
     
     IEnumerator readyToFruitBad()
