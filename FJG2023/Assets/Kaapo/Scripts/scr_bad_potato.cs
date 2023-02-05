@@ -26,6 +26,7 @@ public class scr_bad_potato : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.tag = "Potato";
         gameObject.AddComponent<scr_shadows>(); //add shadows
         gameObject.GetComponent<scr_shadows>().shadowMaterial = shadowMaterial;
         potatoOffset = new Vector3(Random.Range(0.05f, -0.05f), Random.Range(0.05f, -0.05f), 0);
