@@ -6,45 +6,47 @@ public class scr_door : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
     public Sprite[] newSprite;
-    private int doorOpenCount;
+    private int leverOpenCount;
     private Rigidbody2D potatoRigidBody;
     private Rigidbody2D playerRigidBody;
     private bool keepOpen;
     private float smoothMultiplier;
+    private int doorOrder;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameObject[] doors = GameObject.FindGameObjectsWithTag("tag_door");
+        doorOrder = doors.Length;
+
+        foreach (GameObject door in doors) //check every lever for distance
+        {
+            if (door.transform.position.y > transform.position.y) //if other is higher than I
+            {
+                doorOrder--;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
         GameObject[] levers = GameObject.FindGameObjectsWithTag("tag_lever"); //gather all levers in room to this array
         foreach (GameObject lever in levers) //check every lever for distance
         {
             if (lever.GetComponent<scr_lever>().leverPulled == true)
             {
-                doorOpenCount++;
+                leverOpenCount++;
             }
         }
-        if (doorOpenCount == 0) //all levers are off
+
+        if (leverOpenCount == doorOrder) //my lever is open
         {
-            spriteRenderer.sprite = newSprite[0];
+            Destroy(gameObject);
         }
 
-        if (doorOpenCount == 1) //i lever on
-        {
-            spriteRenderer.sprite = newSprite[1];
-        }
-
-        if (doorOpenCount == 2) //2 levers on
-        {
-            spriteRenderer.sprite = newSprite[2];
-        }
-
-        if (doorOpenCount > 2) //3 or more levers on
+        if (leverOpenCount > 2) //3 or more levers on
         {
             if (keepOpen == false)
             {
