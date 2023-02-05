@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fa164b904fbcebc41927addd95be81fc
+guid: c7e5a54faf8a83242b3c4c0a092839d6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lever2_0
+      name: dorime_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 164
+        height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38d9c1b88d0492e49817de1624aeb858
-      internalID: 1775637488
+      spriteID: 86ec28c19f809d749a67faf98fedbde5
+      internalID: -1579736772
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lever2_1
+      name: dorime_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 164
         y: 0
-        width: 32
-        height: 32
+        width: 164
+        height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c783e4766c9927f47ba5dc4e23b63503
-      internalID: -1641933181
+      spriteID: 648ffdba4dfa9144089b7f23f30300af
+      internalID: 4584149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dorime_2
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 0
+        width: 164
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c769b765a6692241acc2730071f90c1
+      internalID: 564300122
       vertices: []
       indices: 
       edges: []
@@ -157,8 +178,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Lever2_0: 1775637488
-      Lever2_1: -1641933181
+      dorime_2: 564300122
+      dorime_1: 4584149
+      dorime_0: -1579736772
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

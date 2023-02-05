@@ -14,6 +14,7 @@ public class scr_good_potato : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.AddComponent<GoodPotato>();
         attachSegment = Random.Range(0, transform.parent.GetComponent<scr_tentacle>().segmentQuantity);
         gameObject.AddComponent<scr_shadows>(); //add shadows
         gameObject.GetComponent<scr_shadows>().shadowMaterial = shadowMaterial; //assign shadow material

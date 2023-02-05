@@ -18,9 +18,6 @@ public class PlayerCombat : MonoBehaviour
     float xPlayerDirection;
     float yPlayerDirection;
 
-    Vector3 spawnPos;
-
-
     void Start()
     {
     }
@@ -51,34 +48,32 @@ public class PlayerCombat : MonoBehaviour
         if(xPlayerDirection < 0 )
         {
             attackPoint.localPosition = new Vector3(-1, 0, 0);
+
         } 
         else if(xPlayerDirection > 0) 
         {
             attackPoint.localPosition = new Vector3(1, 0, 0);
+
         } 
         else if (yPlayerDirection < 0)
         {
             attackPoint.localPosition =  new Vector3(0, -1, 0);
+
         }
         else if (yPlayerDirection > 0)
         {
             attackPoint.localPosition = new Vector3(0, 1, 0);
+
         }
     }
 
     void Attack()
     {
-        //sound effect
-        //play attack animation
-        if (attackPoint.localPosition.x != 0)
-        {
 
-        }
-        else
-        {
-            
-        }
+        animator.SetFloat("AttackPosX", attackPoint.localPosition.x);
+        animator.SetFloat("AttackPosY", attackPoint.localPosition.y);
 
+        animator.SetTrigger("Attack");
 
         // Detect enemies in range of attack
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);

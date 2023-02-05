@@ -20,6 +20,8 @@ public class scr_bad_potato : MonoBehaviour
     private Vector3 potatoOffset;
     public float randomX;
     public float randomY;
+    private bool boostOnce;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +36,7 @@ public class scr_bad_potato : MonoBehaviour
         }
         else
         {
-            gameObject.transform.localScale = new Vector3(1f, 1f, 1f); //start from nowhere
+            gameObject.transform.localScale = new Vector3(1f, 1f, 0); //start from nowhere
         }
         generateThisMany = Random.Range(10, 16); //amount of roots generated
         ejectForce = new Vector3(Random.Range(-1f, 1f),Random.Range(-1f, 1f),0); //force at which the potato will eject from root
@@ -45,6 +47,11 @@ public class scr_bad_potato : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Vector3.Distance(transform.position, player.transform.position) > 4000)
+        {
+            Destroy(gameObject);
+        }
+
         if (detachLock == false)
         {
             StartCoroutine(detach());
@@ -68,15 +75,22 @@ public class scr_bad_potato : MonoBehaviour
             StartCoroutine(addTentacle()); //enter sprouting sequence
             doOnce = false; //lock
         }
+
+        if (boostOnce == false)
+        {
+            StartCoroutine(speedBoost());
+            boostOnce = true;
+        }
+
     }
 
     IEnumerator addTentacle()
     {
         if (current != generateThisMany) //if the limit is not reached yet
         {
-            sproutAtRandom = Random.Range(10, 30);
-            randomX = Random.Range(-0.5f, 0.5f); //direction, in which the tentacle will grow
-            randomY = Random.Range(-0.5f, 0.5f); //direction, in which the tentacle will grow
+            sproutAtRandom = Random.Range(10, 20);
+            randomX = Random.Range(-0.2f, 0.2f); //direction, in which the tentacle will grow
+            randomY = Random.Range(-0.2f, 0.2f); //direction, in which the tentacle will grow
 
             yield return new WaitForSeconds(sproutAtRandom); //wait this long to create new tentacle
             GameObject tentacle = new GameObject("Tentacle"); //make new tentacle
@@ -85,6 +99,7 @@ public class scr_bad_potato : MonoBehaviour
             tentacle.AddComponent<scr_tentacle>(); //add script to tentacle
             tentacle.GetComponent<scr_tentacle>().tentacleMaterial = tentacleMaterial; //add material to root
             tentacle.GetComponent<scr_tentacle>().shadowMaterial = shadowMaterial; //also store shadow material for later use
+            tentacle.GetComponent<scr_tentacle>().player = player;
 
             tentacle.GetComponent<scr_tentacle>().potatoSprite = potatoSprite; //also store this sprite to root
 
@@ -99,10 +114,19 @@ public class scr_bad_potato : MonoBehaviour
     }
     IEnumerator detach()
     {
-        yield return new WaitForSeconds(20); //wait 20 seconds until ripe
+        yield return new WaitForSeconds(10); //wait 20 seconds until ripe
         detatched = true; //do not follow root anymore
         rigidBody.AddForce(ejectForce, ForceMode2D.Impulse); //add force to any direction
         transform.parent = null;
         doOnce = true; //activate sprouting
+    }
+
+    IEnumerator speedBoost()
+    {
+        ejectForce = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
+        yield return new WaitForSeconds(20); //wait 20 seconds until fruits sprout
+        Debug.Log("boost");
+        rigidBody.AddForce(ejectForce, ForceMode2D.Impulse);
+        boostOnce = false;
     }
 }
