@@ -70,6 +70,15 @@ public class PlayerCombat : MonoBehaviour
     {
         //sound effect
         //play attack animation
+        if (attackPoint.localPosition.x != 0)
+        {
+
+        }
+        else
+        {
+            
+        }
+
 
         // Detect enemies in range of attack
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
@@ -95,11 +104,13 @@ public class PlayerCombat : MonoBehaviour
         {
             if (someObject.CompareTag("Potato"))
             {
+                //sound effect
                 someObject.GetComponent<GoodPotato>().PickUp();
             }
 
             if (someObject.CompareTag("Keeper"))
             {
+                //sound effect
                 someObject.GetComponent<InventoryBox>().ReceivePotatoes();
             }
         }

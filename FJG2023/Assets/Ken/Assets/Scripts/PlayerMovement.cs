@@ -55,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
 
         moveForce = new Vector2(xForce, yForce).normalized;
 
+        animator.SetFloat("Horizontal", xForce);
+        animator.SetFloat("Vertical", yForce);
         animator.SetFloat("Speed", moveForce.sqrMagnitude);
     }
 

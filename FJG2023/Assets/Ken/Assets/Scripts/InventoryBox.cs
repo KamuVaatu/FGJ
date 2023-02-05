@@ -13,7 +13,6 @@ public class InventoryBox : MonoBehaviour
 
     public void ReceivePotatoes()
     {
-        //Sound Efffect
         logic.Unload();
     }
 }
