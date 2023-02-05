@@ -11,6 +11,11 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
+    public LayerMask neutralObjectLayers;
+    public AudioClip attackClip;
+    public AudioClip interactClip;
+    public AudioSource playeraudio;
+
 
     public float attackRate = 2f;
     float nextAttackTime = 0F;
@@ -22,6 +27,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Start()
     {
+        playeraudio = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -63,7 +69,15 @@ public class PlayerCombat : MonoBehaviour
     void Attack()
     {
 
+        playeraudio.PlayOneShot(attackClip, 1f);
+        animator.SetFloat("AttackPosX", attackPoint.localPosition.x);
+        animator.SetFloat("AttackPosY", attackPoint.localPosition.y);
+
+        animator.SetTrigger("Attack");
+
+
         //play attack animation
+
 
         // Detect enemies in range of attack
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
@@ -74,6 +88,29 @@ public class PlayerCombat : MonoBehaviour
             Debug.Log("Hit");
         }
 
+    }
+
+
+    // Keraa perunat
+    public void interact()
+    {
+        //sound effect
+        playeraudio.PlayOneShot(interactClip, 1f);
+        Collider2D[] someObjects= Physics2D.OverlapCircleAll(attackPoint.position, attackRange, neutralObjectLayers);
+        foreach (Collider2D someObject in someObjects)
+        {
+            if (someObject.CompareTag("Potato"))
+            {
+                //sound effect
+                someObject.GetComponent<GoodPotato>().PickUp();
+            }
+
+            if (someObject.CompareTag("Keeper"))
+            {
+                //sound effect
+                someObject.GetComponent<InventoryBox>().ReceivePotatoes();
+            }
+        }
     }
 
     // Draw the HitBox
