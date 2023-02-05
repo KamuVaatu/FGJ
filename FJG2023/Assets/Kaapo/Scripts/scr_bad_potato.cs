@@ -11,7 +11,7 @@ public class scr_bad_potato : MonoBehaviour
     private bool detatched;
     public Material tentacleMaterial;
     public Material shadowMaterial;
-    public Rigidbody rigidBody;
+    public Rigidbody2D rigidBody;
     private Vector3 ejectForce;
     public SpriteRenderer spriteRenderer;
     public Sprite[] potatoSprite;
@@ -38,8 +38,8 @@ public class scr_bad_potato : MonoBehaviour
         }
         generateThisMany = Random.Range(10, 16); //amount of roots generated
         ejectForce = new Vector3(Random.Range(-1f, 1f),Random.Range(-1f, 1f),0); //force at which the potato will eject from root
-        rigidBody.angularDrag = 0f; //remove drag
-        rigidBody.useGravity = false; //remove gravity
+        rigidBody.gravityScale = 0;
+        rigidBody.angularDrag = 0;
     }
 
     // Update is called once per frame
@@ -74,7 +74,7 @@ public class scr_bad_potato : MonoBehaviour
     {
         if (current != generateThisMany) //if the limit is not reached yet
         {
-            sproutAtRandom = Random.Range(20, 40);
+            sproutAtRandom = Random.Range(10, 30);
             randomX = Random.Range(-0.5f, 0.5f); //direction, in which the tentacle will grow
             randomY = Random.Range(-0.5f, 0.5f); //direction, in which the tentacle will grow
 
@@ -101,7 +101,7 @@ public class scr_bad_potato : MonoBehaviour
     {
         yield return new WaitForSeconds(20); //wait 20 seconds until ripe
         detatched = true; //do not follow root anymore
-        rigidBody.AddForce(ejectForce, ForceMode.Impulse); //add force to any direction
+        rigidBody.AddForce(ejectForce, ForceMode2D.Impulse); //add force to any direction
         transform.parent = null;
         doOnce = true; //activate sprouting
     }
