@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class scr_shadows : MonoBehaviour
 {
-    private Vector3 positionOffset = new Vector3(-0.1f, -0.1f,-10f);
+    private Vector3 positionOffset = new Vector2(-0.1f, -0.1f);
     GameObject shadow;
     public Material shadowMaterial;
 
