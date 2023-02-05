@@ -80,7 +80,7 @@ public class scr_tentacle : MonoBehaviour
         renderer.sprite = potatoSprite[randomBad];
         bad_potato.GetComponent<scr_bad_potato>().tentacleMaterial = tentacleMaterial;
         bad_potato.GetComponent<scr_bad_potato>().shadowMaterial = shadowMaterial;
-        bad_potato.GetComponent<scr_bad_potato>().rigidBody = bad_potato.AddComponent<Rigidbody>();
+        bad_potato.GetComponent<scr_bad_potato>().rigidBody = bad_potato.AddComponent<Rigidbody2D>();
         bad_potato.GetComponent<scr_bad_potato>().potatoSprite = potatoSprite; //return sprite stored from the parent to child
         bad_potato.transform.parent = gameObject.transform;
     }
@@ -97,7 +97,7 @@ public class scr_tentacle : MonoBehaviour
             SpriteRenderer renderer = good_potato.AddComponent<SpriteRenderer>();
             renderer.sprite = potatoSprite[randomGood];
             good_potato.GetComponent<scr_good_potato>().shadowMaterial = shadowMaterial;
-            good_potato.GetComponent<scr_good_potato>().rigidBody = good_potato.AddComponent<Rigidbody>();
+            good_potato.GetComponent<scr_good_potato>().rigidBody = good_potato.AddComponent<Rigidbody2D>();
             good_potato.GetComponent<scr_good_potato>().potatoSprite = potatoSprite; //return sprite stored from the parent to child
             good_potato.transform.parent = gameObject.transform;
         }

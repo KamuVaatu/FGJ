@@ -5,7 +5,7 @@ using UnityEngine;
 public class scr_good_potato : MonoBehaviour
 {
     public Material shadowMaterial;
-    public Rigidbody rigidBody;
+    public Rigidbody2D rigidBody;
     public SpriteRenderer spriteRenderer;
     public Sprite[] potatoSprite;
     private int attachSegment;
@@ -20,7 +20,8 @@ public class scr_good_potato : MonoBehaviour
         potatoOffset = new Vector3(Random.Range(0.5f, -0.5f), Random.Range(0.5f, -0.5f), 0); //potato growth offset
         gameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f); //start from small
         rigidBody.angularDrag = 0f; //remove drag
-        rigidBody.useGravity = false; //remove gravity
+        rigidBody.gravityScale = 0;
+        rigidBody.angularDrag = 0;
     }
 
     // Update is called once per frame
