@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ca6f51338d0ff254a9ccf0946ee2d2a2
+guid: 7b91d078658510143bea938ae28daad4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlsyerWaterRight_0
+      name: PLayerDown_PlsyerAttackAnimationSwing_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,41 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42e8804d3fc6e42438c1c757ab78ab2f
-      internalID: 285496866
+      spriteID: 1c861fe63be3ed249838d4f92966ee4b
+      internalID: -684093519
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlsyerWaterRight_1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f64367de453640c429bbb39fae26c4a0
-      internalID: 1608083503
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlsyerWaterRight_2
+      name: PLayerDown_PlsyerAttackAnimationSwing_1
       rect:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,20 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e8223e58fc308f4999dd67239d1f2b7
-      internalID: -2035645644
+      spriteID: 931aa848792c5714ea2986054ac47663
+      internalID: -1521898192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlsyerWaterRight_3
+      name: PLayerDown_PlsyerAttackAnimationSwing_2
       rect:
         serializedVersion: 2
-        x: 192
+        x: 256
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,8 +161,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e6da2c3f3e46c34abdd0e00a4fdb1e3
-      internalID: 461874074
+      spriteID: f67d96b6025196748953e3b2941b769b
+      internalID: -941252102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PLayerDown_PlsyerAttackAnimationSwing_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc82fda2ef2ed314b9101d32639016a7
+      internalID: -467187557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PLayerDown_PlsyerAttackAnimationSwing_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 316f09634a9ac1149a6f045a80573e60
+      internalID: 1242498318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PLayerDown_PlsyerAttackAnimationSwing_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85975ef4e3e5e824ba7da69b99fb5958
+      internalID: 89359096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PLayerDown_PlsyerAttackAnimationSwing_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c6271ef788de3f4096afd5041e7726e
+      internalID: 1516313601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PLayerDown_PlsyerAttackAnimationSwing_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce124b5bb7117c64da221292d168a105
+      internalID: -147631773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PLayerDown_PlsyerAttackAnimationSwing_8
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c35859a23668adf42b16ed87ca398be6
+      internalID: -1910525327
       vertices: []
       indices: 
       edges: []
@@ -199,10 +304,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlsyerWaterRight_0: 285496866
-      PlsyerWaterRight_2: -2035645644
-      PlsyerWaterRight_3: 461874074
-      PlsyerWaterRight_1: 1608083503
+      PLayerDown_PlsyerAttackAnimationSwing_7: -147631773
+      PLayerDown_PlsyerAttackAnimationSwing_4: 1242498318
+      PLayerDown_PlsyerAttackAnimationSwing_8: -1910525327
+      PLayerDown_PlsyerAttackAnimationSwing_6: 1516313601
+      PLayerDown_PlsyerAttackAnimationSwing_0: -684093519
+      PLayerDown_PlsyerAttackAnimationSwing_3: -467187557
+      PLayerDown_PlsyerAttackAnimationSwing_5: 89359096
+      PLayerDown_PlsyerAttackAnimationSwing_1: -1521898192
+      PLayerDown_PlsyerAttackAnimationSwing_2: -941252102
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
