@@ -43,6 +43,11 @@ public class PlayerCombat : MonoBehaviour
             Attack();
             nextAttackTime = Time.time + 1f / attackRate; // 0,5sec
         }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            interact();
+        }
     }
 
     //vaihtaa hitboxin syoton suuntaanw
@@ -85,7 +90,7 @@ public class PlayerCombat : MonoBehaviour
         //Damage them
         foreach(Collider2D enemy in hitEnemies)
         {
-            Debug.Log("Hit");
+            enemy.GetComponent<PotatoEnemy>().TakeDamage(50);
         }
 
     }

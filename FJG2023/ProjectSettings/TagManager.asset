@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - tag_tentacle
+  - Potato
+  - Keeper
+  - Logic
   layers:
   - Default
   - TransparentFX
@@ -36,8 +39,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Enemy
+  - Neutral
   m_SortingLayers:
   - name: Default
     uniqueID: 0

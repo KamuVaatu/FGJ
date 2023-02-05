@@ -52,9 +52,12 @@ public class PlayerMovement : MonoBehaviour
     {
         xForce = Input.GetAxisRaw("Horizontal");
         yForce = Input.GetAxisRaw("Vertical");
+        Debug.Log(xForce);
 
         moveForce = new Vector2(xForce, yForce).normalized;
 
+        animator.SetFloat("Horizontal", xForce);
+        animator.SetFloat("Vertical", yForce);
         animator.SetFloat("Speed", moveForce.sqrMagnitude);
     }
 
