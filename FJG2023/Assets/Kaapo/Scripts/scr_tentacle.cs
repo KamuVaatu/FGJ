@@ -49,6 +49,8 @@ public class scr_tentacle : MonoBehaviour
             vertexPositions[i] = transform.parent.position; //position all segments to middle of potato
         }
         lineRenderer.SetPositions(vertexPositions); //render line
+
+        
     }
 
     // Update is called once per frame
@@ -60,13 +62,14 @@ public class scr_tentacle : MonoBehaviour
             StartCoroutine(readyToFruitGood());
             oneAtATime = false;
         }
-        
+
         vertexPositions[0] = transform.parent.position; //set first segment at parent
         for (int i = 1; i < vertexPositions.Length; i++) //repeat for every segment
         {
             vertexPositions[i] = Vector3.SmoothDamp(vertexPositions[i], vertexPositions[i - 1] + target, ref vertexSpeed[i], 0.1f); //position current vertex towards last one in direction of targer at set speed
         }
         lineRenderer.SetPositions(vertexPositions); //render line
+
     }
     
     IEnumerator readyToFruitBad()
@@ -76,6 +79,7 @@ public class scr_tentacle : MonoBehaviour
         yield return new WaitForSeconds(fruitAtRandom); //wait 20 seconds until fruits sprout
         GameObject bad_potato = new GameObject ("bad_potato");
         bad_potato.AddComponent<scr_bad_potato>();
+        bad_potato.AddComponent<BoxCollider2D>();
         SpriteRenderer renderer = bad_potato.AddComponent<SpriteRenderer>();
         renderer.sprite = potatoSprite[randomBad];
         bad_potato.GetComponent<scr_bad_potato>().tentacleMaterial = tentacleMaterial;

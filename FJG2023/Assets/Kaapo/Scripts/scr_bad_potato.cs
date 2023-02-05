@@ -34,7 +34,7 @@ public class scr_bad_potato : MonoBehaviour
         }
         else
         {
-            gameObject.transform.localScale = new Vector3(1f, 1f, 1f); //start from nowhere
+            gameObject.transform.localScale = new Vector3(1f, 1f, 0); //start from nowhere
         }
         generateThisMany = Random.Range(10, 16); //amount of roots generated
         ejectForce = new Vector3(Random.Range(-1f, 1f),Random.Range(-1f, 1f),0); //force at which the potato will eject from root
@@ -74,7 +74,7 @@ public class scr_bad_potato : MonoBehaviour
     {
         if (current != generateThisMany) //if the limit is not reached yet
         {
-            sproutAtRandom = Random.Range(10, 30);
+            sproutAtRandom = Random.Range(10, 20);
             randomX = Random.Range(-0.5f, 0.5f); //direction, in which the tentacle will grow
             randomY = Random.Range(-0.5f, 0.5f); //direction, in which the tentacle will grow
 
