@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 128
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c861fe63be3ed249838d4f92966ee4b
-      internalID: -684093519
+      spriteID: c613a98a40ab0f140a738213a08478f4
+      internalID: 1615192146
       vertices: []
       indices: 
       edges: []
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 931aa848792c5714ea2986054ac47663
-      internalID: -1521898192
+      spriteID: ae837dc5424abe946b9c32f31879faf7
+      internalID: 916107993
       vertices: []
       indices: 
       edges: []
@@ -161,8 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f67d96b6025196748953e3b2941b769b
-      internalID: -941252102
+      spriteID: bd951ff98a94cb74681f39ba4266507d
+      internalID: -638106931
       vertices: []
       indices: 
       edges: []
@@ -182,8 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc82fda2ef2ed314b9101d32639016a7
-      internalID: -467187557
+      spriteID: 1e350dc5c7dd32c4e81969b6e503d95a
+      internalID: 1492724713
       vertices: []
       indices: 
       edges: []
@@ -203,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 316f09634a9ac1149a6f045a80573e60
-      internalID: 1242498318
+      spriteID: 6941d7b2e75a8ea43b059164714ed312
+      internalID: -696786144
       vertices: []
       indices: 
       edges: []
@@ -224,8 +224,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85975ef4e3e5e824ba7da69b99fb5958
-      internalID: 89359096
+      spriteID: 799cfbe5fa3367a4588e88cf9fb3698b
+      internalID: 136777732
       vertices: []
       indices: 
       edges: []
@@ -245,8 +245,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c6271ef788de3f4096afd5041e7726e
-      internalID: 1516313601
+      spriteID: 5fe2a819220691c4e8377eb7d7850672
+      internalID: 780513688
       vertices: []
       indices: 
       edges: []
@@ -266,8 +266,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce124b5bb7117c64da221292d168a105
-      internalID: -147631773
+      spriteID: 88cb0b3b0b771964a8f8a2a44b7c1238
+      internalID: 171124478
       vertices: []
       indices: 
       edges: []
@@ -287,8 +287,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c35859a23668adf42b16ed87ca398be6
-      internalID: -1910525327
+      spriteID: 9fbf01512f030b04a9bd86b53b3bc7c6
+      internalID: -1026416370
       vertices: []
       indices: 
       edges: []
@@ -304,15 +304,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PLayerDown_PlsyerAttackAnimationSwing_7: -147631773
-      PLayerDown_PlsyerAttackAnimationSwing_4: 1242498318
-      PLayerDown_PlsyerAttackAnimationSwing_8: -1910525327
-      PLayerDown_PlsyerAttackAnimationSwing_6: 1516313601
-      PLayerDown_PlsyerAttackAnimationSwing_0: -684093519
-      PLayerDown_PlsyerAttackAnimationSwing_3: -467187557
-      PLayerDown_PlsyerAttackAnimationSwing_5: 89359096
-      PLayerDown_PlsyerAttackAnimationSwing_1: -1521898192
-      PLayerDown_PlsyerAttackAnimationSwing_2: -941252102
+      PLayerDown_PlsyerAttackAnimationSwing_7: 171124478
+      PLayerDown_PlsyerAttackAnimationSwing_4: -696786144
+      PLayerDown_PlsyerAttackAnimationSwing_8: -1026416370
+      PLayerDown_PlsyerAttackAnimationSwing_6: 780513688
+      PLayerDown_PlsyerAttackAnimationSwing_0: 1615192146
+      PLayerDown_PlsyerAttackAnimationSwing_3: 1492724713
+      PLayerDown_PlsyerAttackAnimationSwing_5: 136777732
+      PLayerDown_PlsyerAttackAnimationSwing_1: 916107993
+      PLayerDown_PlsyerAttackAnimationSwing_2: -638106931
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
