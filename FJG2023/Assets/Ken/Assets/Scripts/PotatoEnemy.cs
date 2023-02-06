@@ -13,6 +13,10 @@ public class PotatoEnemy : MonoBehaviour
     public AudioClip hurt2;
     public AudioClip hurt3;
     public AudioSource enemyAudio;
+    public LogicManager logic;
+
+    
+
 
 
     //public Sprite[] damagestatukset = new Sprite[18]; 
@@ -23,6 +27,7 @@ public class PotatoEnemy : MonoBehaviour
         enemyAudio = GetComponent<AudioSource>();
         colorShift = GetComponent<SpriteRenderer>();
         currentHealth = maxHealth;
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicManager>();
         //potato = gameObject.GetComponent<SpriteRenderer>().sprite.ToString();
     }
 
@@ -84,6 +89,20 @@ public class PotatoEnemy : MonoBehaviour
             enemyAudio.PlayOneShot(hurt3, 1f);
             Die();
         }
+    }
+
+    public void PickUp()
+    {
+        if (logic.IsBagFull() == true)
+        {
+            return;
+        }
+
+        logic.AddPotato();
+
+        //somekinda animation here.
+
+        Destroy(gameObject);
     }
 
     void Die()

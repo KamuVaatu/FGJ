@@ -23,7 +23,6 @@ public class scr_tentacle : MonoBehaviour
     private float movementSpeed = 0.12f;
     private bool attachOnce;
     private float distanceMultiplier;
-    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -102,7 +101,7 @@ public class scr_tentacle : MonoBehaviour
         bad_potato.GetComponent<scr_bad_potato>().tentacleMaterial = tentacleMaterial;
         bad_potato.GetComponent<scr_bad_potato>().shadowMaterial = shadowMaterial;
         bad_potato.GetComponent<scr_bad_potato>().rigidBody = bad_potato.AddComponent<Rigidbody2D>();
-        bad_potato.GetComponent<scr_bad_potato>().player = player;
+    
         bad_potato.GetComponent<scr_bad_potato>().potatoSprite = potatoSprite; //return sprite stored from the parent to child
         bad_potato.transform.parent = gameObject.transform;
     }

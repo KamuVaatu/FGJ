@@ -21,7 +21,6 @@ public class scr_bad_potato : MonoBehaviour
     public float randomX;
     public float randomY;
     private bool boostOnce;
-    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -48,11 +47,6 @@ public class scr_bad_potato : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) > 4000)
-        {
-            Destroy(gameObject);
-        }
-
         if (detachLock == false)
         {
             StartCoroutine(detach());
@@ -100,7 +94,6 @@ public class scr_bad_potato : MonoBehaviour
             tentacle.AddComponent<scr_tentacle>(); //add script to tentacle
             tentacle.GetComponent<scr_tentacle>().tentacleMaterial = tentacleMaterial; //add material to root
             tentacle.GetComponent<scr_tentacle>().shadowMaterial = shadowMaterial; //also store shadow material for later use
-            //tentacle.GetComponent<scr_tentacle>().player = player;
 
             tentacle.GetComponent<scr_tentacle>().potatoSprite = potatoSprite; //also store this sprite to root
 
