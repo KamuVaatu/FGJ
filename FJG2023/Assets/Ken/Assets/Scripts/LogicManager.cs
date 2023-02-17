@@ -9,13 +9,39 @@ public class LogicManager : MonoBehaviour
 {
     private int potatoesCarrying = 0;
     public int maxPotatoes = 15;
-    private int totalPotatoes = 0;
-    private long totalScore = 0;
+    public int totalPotatoes = 0;
     bool bagfull = false;
     public TMP_Text currentPotato;
-    public TMP_Text currentScore;
-    public GameObject gameoverScreen;
+    public TMP_Text currentTotalP;
+    public TMP_Text currentBadPotatoes;
+    public int BadPotatoCount;
+    int OldPotatoCount;
+    Animator animator;
+    LevelLoader levelLoader;
+
+    void Start()
+    {
+        animator = GameObject.FindGameObjectWithTag("Door").GetComponent<Animator>();
+        levelLoader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
+    }
+
+    void Update()
+    {
+        OldPotatoCount = BadPotatoCount;
+        BadPotatoCount = GameObject.FindGameObjectsWithTag("Potato").Length - 5;
+        if(OldPotatoCount != BadPotatoCount) 
+        {
+            Debug.Log("do it");
+            BadPotatoes();
+        }
+
+        GameOver();
+    }
     
+    void BadPotatoes()
+    {
+        currentBadPotatoes.text = "Bad Potatoes: " + BadPotatoCount;
+    }
 
     [ContextMenu("Increase a score")]
     public void AddPotato() 
@@ -27,33 +53,11 @@ public class LogicManager : MonoBehaviour
     [ContextMenu("Unload")]
     public void Unload()
     {
-        PointsCalculator(potatoesCarrying);
+        totalPotatoes += potatoesCarrying;
         potatoesCarrying = 0;
         bagfull = false;
         currentPotato.text = "Potatoes: " + potatoesCarrying;
-    }
-
-    private void PointsCalculator(int potatoes)
-    {
-        
-
-        if (potatoes == maxPotatoes)
-        {
-            totalScore += potatoes * 100;
-        } 
-        else
-        {
-            totalScore += potatoes * 10;
-        }
-
-        totalPotatoes += potatoes;
-
-        if (totalPotatoes % 150 == 0)
-        {
-            totalScore *= 2;
-        }
-
-        currentScore.text = "Score: " + totalScore;
+        currentTotalP.text = "Potatoes in Box: " + totalPotatoes;
     }
 
     public Boolean IsBagFull()
@@ -65,5 +69,36 @@ public class LogicManager : MonoBehaviour
         }
 
         return bagfull;
+    }
+    public void GameOver()
+    {
+        if (BadPotatoCount >= 100)
+        {
+            StartCoroutine(Lose());
+        }
+
+        if (totalPotatoes >= 150)
+        {
+            levelLoader.LoadNextLevel(2);
+        }
+    }
+
+    public bool DoesPlayerCarryPotatoes()
+    {
+        if (potatoesCarrying == 0)
+        {
+            return false;
+        } 
+        else
+        {
+            return true;
+        }
+    }
+
+    IEnumerator Lose()
+    {
+        animator.SetTrigger("open");
+        yield return new WaitForSeconds(1);
+        levelLoader.LoadNextLevel(1);
     }
 }

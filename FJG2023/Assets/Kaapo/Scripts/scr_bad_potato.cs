@@ -22,6 +22,16 @@ public class scr_bad_potato : MonoBehaviour
     public float randomY;
     private bool boostOnce;
 
+    //Kenin lisays testausta varten
+    //public AudioClip hurt1;
+    //public AudioClip hurt2;
+    //public AudioClip hurt3;
+    //public AudioSource enemyAudio;
+    //private int detachedPotatoes;
+    //int currentHealth = 150;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +52,7 @@ public class scr_bad_potato : MonoBehaviour
         ejectForce = new Vector3(Random.Range(-1f, 1f),Random.Range(-1f, 1f),0); //force at which the potato will eject from root
         rigidBody.gravityScale = 0;
         rigidBody.angularDrag = 0;
+        
     }
 
     // Update is called once per frame
@@ -112,15 +123,61 @@ public class scr_bad_potato : MonoBehaviour
         detatched = true; //do not follow root anymore
         rigidBody.AddForce(ejectForce, ForceMode2D.Impulse); //add force to any direction
         transform.parent = null;
-        doOnce = true; //activate sprouting
+        doOnce = true; //activate sprouting 
     }
 
     IEnumerator speedBoost()
     {
         ejectForce = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
-        yield return new WaitForSeconds(20); //wait 20 seconds until fruits sprout
+        yield return new WaitForSeconds(10); //wait 20 seconds until fruits sprout
         Debug.Log("boost");
         rigidBody.AddForce(ejectForce, ForceMode2D.Impulse);
         boostOnce = false;
     }
+
+    private void OnDestroy()
+    {
+        gameObject.GetComponent<scr_shadows>().DestroyMe();
+    }
+
+
+
+
+    //Kenin lisays
+    //public void HowManyPotatoes()
+    //{
+
+    //}
+
+    //public void TakeDamage(int damage)
+    //{
+    //    currentHealth -= damage;
+
+    //    // damagestate
+
+    //    if (currentHealth == 100)
+    //    {
+    //        enemyAudio.PlayOneShot(hurt1, 1f);
+    //        spriteRenderer.color = Color.yellow;
+    //    }
+
+    //    if (currentHealth == 50)
+    //    {
+    //        enemyAudio.PlayOneShot(hurt2, 1f);
+    //        spriteRenderer.color = Color.red;
+    //    }
+
+    //    if (currentHealth <= 0)
+    //    {
+
+    //        Death();
+    //    }
+    //}
+
+    //void Death()
+    //{
+    //    enemyAudio.PlayOneShot(hurt3, 1f);
+    //    // tahan kuolema animaatio
+    //    Destroy(gameObject);
+    //}
 }

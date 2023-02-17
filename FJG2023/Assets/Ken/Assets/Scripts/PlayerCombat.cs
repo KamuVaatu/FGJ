@@ -12,9 +12,10 @@ public class PlayerCombat : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
     public LayerMask neutralObjectLayers;
-    public AudioClip attackClip;
-    public AudioClip interactClip;
-    public AudioSource playeraudio;
+
+    private AudioSource playerAudio;
+    private AudioScript audioScript;
+    LogicManager logic;
 
 
     public float attackRate = 2f;
@@ -27,7 +28,10 @@ public class PlayerCombat : MonoBehaviour
 
     void Start()
     {
-        playeraudio = gameObject.GetComponent<AudioSource>();
+        audioScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioScript>();
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicManager>();
+        playerAudio = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
@@ -73,24 +77,24 @@ public class PlayerCombat : MonoBehaviour
 
     void Attack()
     {
-
-        playeraudio.PlayOneShot(attackClip, 1f);
-        animator.SetFloat("AttackPosX", attackPoint.localPosition.x);
-        animator.SetFloat("AttackPosY", attackPoint.localPosition.y);
-
         animator.SetTrigger("Attack");
-
-
         //play attack animation
-
-
         // Detect enemies in range of attack
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
+        int index = 0;
         //Damage them
         foreach(Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<PotatoEnemy>().TakeDamage(50);
+            if(enemy.GetComponent<PotatoEnemy>() != null)
+            {
+                enemy.GetComponent<PotatoEnemy>().TakeDamage(50);
+                index++;
+            }           
+        }
+
+        if(index != 0)
+        {
+            playerAudio.PlayOneShot(audioScript.SetPunchEffect(), 0.5f);
         }
 
     }
@@ -99,22 +103,32 @@ public class PlayerCombat : MonoBehaviour
     // Keraa perunat
     public void interact()
     {
-        //sound effect
-        playeraudio.PlayOneShot(interactClip, 1f);
+        animator.SetTrigger("Pour");
+        int index = 0;
+
         Collider2D[] someObjects= Physics2D.OverlapCircleAll(attackPoint.position, attackRange, neutralObjectLayers);
         foreach (Collider2D someObject in someObjects)
         {
-            if (someObject.CompareTag("Potato"))
+            if (someObject.CompareTag("GoodPotato"))
             {
-                //sound effect
                 someObject.GetComponent<GoodPotato>().PickUp();
+                index++;
             }
 
             if (someObject.CompareTag("Keeper"))
             {
-                //sound effect
                 someObject.GetComponent<InventoryBox>().ReceivePotatoes();
             }
+        }
+
+        if(index != 0 && !logic.IsBagFull())
+        {
+            playerAudio.PlayOneShot(audioScript.ItemPickUp(), 0.5f);
+        }
+
+        if (index != 0 && logic.IsBagFull())
+        {
+            playerAudio.PlayOneShot(audioScript.BagFull(), 0.5f);
         }
     }
 

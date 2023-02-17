@@ -6,9 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Mikko/StartingScreen.unity
+    path: Assets/Master/StartingScreen.unity
     guid: 81adbad2d7f9f5647ad1266ba157dec2
   - enabled: 1
-    path: Assets/Mikko/New Scene.unity
-    guid: cbb2ff1d4a0ffc74da896360174b4265
+    path: Assets/Master/Rules.unity
+    guid: f6ac5370fd9a98344becd13feecc540d
+  - enabled: 1
+    path: Assets/Master/MainScene.unity
+    guid: 816fc23291b0c524d870109376132e83
+  - enabled: 1
+    path: Assets/Master/Game Over.unity
+    guid: 1c04ded4656bf9b4aa224396024e397c
+  - enabled: 1
+    path: Assets/Master/WinScreen.unity
+    guid: 2f7dedd2b3181d24fa43733a3d347e1d
   m_configObjects: {}

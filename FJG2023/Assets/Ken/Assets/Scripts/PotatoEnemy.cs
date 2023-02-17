@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public class PotatoEnemy : MonoBehaviour
@@ -7,14 +8,11 @@ public class PotatoEnemy : MonoBehaviour
     int maxHealth = 150;
     int currentHealth;
     string potato;
-    int[] perunaLista = { 6, 7, 8, 9, 10, 11};
-    SpriteRenderer colorShift;
-    public AudioClip hurt1;
-    public AudioClip hurt2;
-    public AudioClip hurt3;
-    public AudioSource enemyAudio;
+    SpriteRenderer spriteRenderer;
+    Sprite[] damagestate;
+    private AudioSource enemyAudio;
     public LogicManager logic;
-
+    private AudioScript audioScript;
     
 
 
@@ -24,91 +22,58 @@ public class PotatoEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyAudio = GetComponent<AudioSource>();
-        colorShift = GetComponent<SpriteRenderer>();
+        audioScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioScript>();
+        enemyAudio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        string potato = spriteRenderer.sprite.ToString();
         currentHealth = maxHealth;
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicManager>();
-        //potato = gameObject.GetComponent<SpriteRenderer>().sprite.ToString();
+        damagestate = GameObject.FindWithTag("Sprite").GetComponent<SpriteChange>().DetectPotatoSprite(potato);
     }
 
-    //int detectPotatoSprite()
-    //{
 
-    //    if (potato == "Potatoes_6 (UnityEngine.Sprite)")
-    //    {
-    //        return perunaLista[0];
-    //    }
-    //    else if (potato == "Potatoes_7 (UnityEngine.Sprite)")
-    //    {
-    //        return perunaLista[1];
-    //    }
-    //    else if (potato == "Potatoes_8 (UnityEngine.Sprite)")
-    //    {
-
-    //        return perunaLista[2];
-    //    }
-    //    else if (potato == "Potatoes_9 (UnityEngine.Sprite)")
-    //    {
-    //        return perunaLista[3];
-    //    }
-    //    else if (potato == "Potatoes_10 (UnityEngine.Sprite)")
-    //    {
-    //        return perunaLista[4];
-    //    }
-    //    else
-    //    {
-    //        return perunaLista[5];
-    //    }
-    //}
     
-    //void changeSprite(int damage, int index)
-    //{
 
-    //}
+    void changesprite(int damage, int index)
+    {
+
+    }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
 
-        // damagestate
-
         if(currentHealth == 100)
         {
-            enemyAudio.PlayOneShot(hurt1, 1f);
-            colorShift.color = Color.yellow;
+            enemyAudio.PlayOneShot(audioScript.SetEnemyClip(), 0.5f);
+            spriteRenderer.sprite = damagestate[0];
         }
 
         if (currentHealth == 50)
         {
-            enemyAudio.PlayOneShot(hurt2, 1f);
-            colorShift.color = Color.red;
+            enemyAudio.PlayOneShot(audioScript.SetEnemyClip(), 0.5f);
+            spriteRenderer.sprite = damagestate[2];
         }
 
         if (currentHealth <= 0)
         {
-            enemyAudio.PlayOneShot(hurt3, 1f);
             Die();
         }
     }
 
-    public void PickUp()
+    void Die()
     {
-        if (logic.IsBagFull() == true)
-        {
-            return;
-        }
-
-        logic.AddPotato();
-
-        //somekinda animation here.
-
         Destroy(gameObject);
     }
 
-    void Die()
+    private void OnDestroy()
     {
-        // tahan kuolema animaatio
-        Destroy(gameObject);
+
+    }
+
+    void test()
+    {
+
     }
 }
 

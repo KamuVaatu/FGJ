@@ -33,4 +33,9 @@ public class scr_good_potato : MonoBehaviour
 
         transform.position = transform.parent.GetComponent<scr_tentacle>().vertexPositions[attachSegment] + potatoOffset;
     }
+
+    private void OnDestroy()
+    {
+        gameObject.GetComponent<scr_shadows>().DestroyMe();
+    }
 }

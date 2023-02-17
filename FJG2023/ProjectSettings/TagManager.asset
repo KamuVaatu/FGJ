@@ -8,6 +8,11 @@ TagManager:
   - Potato
   - Keeper
   - Logic
+  - tag_lever
+  - GoodPotato
+  - Audio
+  - Sprite
+  - Door
   layers:
   - Default
   - TransparentFX

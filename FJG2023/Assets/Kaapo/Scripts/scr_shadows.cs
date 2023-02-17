@@ -25,4 +25,9 @@ public class scr_shadows : MonoBehaviour
         shadow.transform.position = transform.position + positionOffset; //position to parent with offset
         shadow.transform.rotation = transform.rotation; //same rotation as parent
     }
+
+    public void DestroyMe()
+    {
+        Destroy(shadow);
+    } 
 }

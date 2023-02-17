@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+
 
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
-    public float moveSpeed = 10f;
+    public float speed = 10f;
     public float maxRunSpeed = 5f;
     float xForce, yForce; 
     public bool velocityCapEnabled = true;
@@ -52,18 +54,17 @@ public class PlayerMovement : MonoBehaviour
     {
         xForce = Input.GetAxisRaw("Horizontal");
         yForce = Input.GetAxisRaw("Vertical");
-        Debug.Log(xForce);
+
 
         moveForce = new Vector2(xForce, yForce).normalized;
-
-        animator.SetFloat("Horizontal", xForce);
-        animator.SetFloat("Vertical", yForce);
-        animator.SetFloat("Speed", moveForce.sqrMagnitude);
+        Animation();
     }
 
     private void AddMovement()
     {
-       rb.AddForce(moveForce * moveSpeed, ForceMode2D.Impulse);
+        rb.MovePosition(rb.position + moveForce * speed * Time.fixedDeltaTime);
+
+        //rb.AddForce(moveForce * speed, ForceMode2D.Impulse);
     }
 
     //Liike nopeuden rajoitus vertaamalla nykyinen vauhti ja maximi sallittu nopeus jokaisessa akselissa.
@@ -94,6 +95,19 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void Animation()
+    {
+        if (xForce != 0 || yForce != 0)
+        {
+            animator.SetFloat("x", xForce);
+            animator.SetFloat("y", yForce);
+            animator.SetFloat("speed", moveForce.magnitude);
+        }
+        else
+        {
+            animator.SetFloat("speed", moveForce.magnitude);
+        }
+    }
 
 
     //void KnockBack()
